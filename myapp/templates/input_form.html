@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wine Quality Prediction Input Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .slider-value {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        input[type="range"] {
+            width: 80%;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        select[name="wine_type"] {
+            width: 80%;
+            padding: 5px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .form-heading {
+            background-color: #00008B;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+    <h1 class="mb-4 text-center">Wine Quality Prediction Input Form</h1>
+    <div class="container mt-5 col-md-8">
+        
+        <form method="POST" action="{% url 'wine_input_form' %}">
+            {% csrf_token %}
+            <div class="row mb-3 ">
+                <label for="wine_type" class="col-sm-2 col-form-label">Select Wine Type:</label>
+                <div class="col-sm-10">
+                    <select name="wine_type" id="wine_type" class="form-select">
+                        <option value="white">White</option>
+                        <option value="red">Red</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Fixed Acidity -->
+            <div class="row mb-3">
+                <label for="fixed_acidity" class="col-sm-2 col-form-label">Fixed Acidity:</label>
+                <div class="col-sm-10">
+                    <input type="range" name="fixed_acidity" id="fixed_acidity" min="3.8" max="15.9" step="0.1" value="7.0" class="form-range">
+                    <span id="fixed_acidity_value" class="slider-value">7.0</span>
+                </div>
+            </div>
+
+            <!-- Volatile Acidity -->
+            <div class="row mb-3">
+                <label for="volatile_acidity" class="col-sm-2 col-form-label">Volatile Acidity:</label>
+                <div class="col-sm-10">
+                    <input type="range" name="volatile_acidity" id="volatile_acidity" min="0.08" max="1.58" step="0.01" value="0.4" class="form-range">
+                    <span id="volatile_acidity_value" class="slider-value">0.4</span>
+                </div>
+            </div>
+
+            <!-- Citric Acid -->
+            <div class="row mb-3">
+                <label for="citric_acid" class="col-sm-2 col-form-label">Citric Acid:</label>
+                <div class="col-sm-10">
+                    <input type="range" name="citric_acid" id="citric_acid" min="0.0" max="1.66" step="0.01" value="0.3" class="form-range">
+                    <span id="citric_acid_value" class="slider-value">0.3</span>
+                </div>
+            </div>
+
+            <!-- Residual Sugar -->
+            <div class="row mb-3">
+                <label for="residual_sugar" class="col-sm-2 col-form-label">Residual Sugar:</label>
+                <div class="col-sm-10">
+                    <input type="range" name="residual_sugar" id="residual_sugar" min="0.6" max="65.8" step="0.1" value="10.4" class="form-range">
+                    <span id="residual_sugar_value" class="slider-value">10.4</span>
+                </div>
+            </div>
+
+            <!-- Chlorides -->
+            <div class="row mb-3">
+                <label for="chlorides" class="col-sm-2 col-form-label">Chlorides:</label>
+                <div class="col-sm-10">
+                    <input type="range" name="chlorides" id="chlorides" min="0.009" max="0.611" step="0.001" value="0.211" class="form-range">
+                    <span id="chlorides_value" class="slider-value">0.211</span>
+                </div>
+            </div>
+
+            <!-- Free Sulfur Dioxide -->
+            <div class="row mb-3">
+                <label for="free_sulfur_dioxide" class="col-sm-2 col-form-label">Free Sulfur Dioxide:</label>
+                <div class="col-sm-10">
+                    <input type="range" name="free_sulfur_dioxide" id="free_sulfur_dioxide" min="1" max="289" step="1" value="200" class="form-range">
+                    <span id="free_sulfur_dioxide_value" class="slider-value">200</span>
+                </div>
+            </div>
+
+            <!-- Total Sulfur Dioxide -->
+            <div class="row mb-3">
+                <label for="total_sulfur_dioxide" class="col-sm-2 col-form-label">Total Sulfur Dioxide:</label>
+                <div class="col-sm-10">
+                    <input type="range" name="total_sulfur_dioxide" id="total_sulfur_dioxide" min="6" max="440" step="1" value="150" class="form-range">
+                    <span id="total_sulfur_dioxide_value" class="slider-value">150</span>
+                </div>
+            </div>
+
+            <!-- Density -->
+            <div class="row mb-3">
+                <label for="density" class="col-sm-2 col-form-label">Density:</label>
+                <div class="col-sm-10">
+                    <input type="range" name="density" id="density" min="0.98" max="1.03" step="0.001" value="1.0" class="form-range">
+                    <span id="density_value" class="slider-value">1.0</span>
+                </div>
+            </div>
+
+            <!-- pH -->
+            <div class="row mb-3">
+                <label for="pH" class="col-sm-2 col-form-label">pH:</label>
+                <div class="col-sm-10">
+                    <input type="range" name="pH" id="pH" min="2.72" max="4.01" step="0.01" value="3.0" class="form-range">
+                    <span id="pH_value" class="slider-value">3.0</span>
+                </div>
+            </div>
+
+            <!-- Sulphates -->
+            <div class="row mb-3">
+                <label for="sulphates" class="col-sm-2 col-form-label">Sulphates:</label>
+                <div class="col-sm-10">
+                    <input type="range" name="sulphates" id="sulphates" min="0.22" max="2.0" step="0.01" value="1.0" class="form-range">
+                    <span id="sulphates_value" class="slider-value">1.0</span>
+                </div>
+            </div>
+
+            <!-- Alcohol -->
+            <div class="row mb-3">
+                <label for="alcohol" class="col-sm-2 col-form-label">Alcohol:</label>
+                <div class="col-sm-10">
+                    <input type="range" name="alcohol" id="alcohol" min="8.0" max="14.9" step="0.1" value="13.4" class="form-range">
+                    <span id="alcohol_value" class="slider-value">13.4</span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-sm-10 offset-sm-2">
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Include JavaScript for updating slider values -->
+    <script>
+        document.querySelectorAll('input[type="range"]').forEach(function(elem) {
+            var sliderValue = elem.parentElement.querySelector('.slider-value');
+            sliderValue.innerHTML = elem.value;
+            elem.addEventListener('input', function() {
+                sliderValue.innerHTML = this.value;
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+</html>
